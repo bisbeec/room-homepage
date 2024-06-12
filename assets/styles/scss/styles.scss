@@ -1,0 +1,265 @@
+@import 'variables';
+@import 'utilities';
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "League Spartan", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 500;
+  	font-style: normal;
+  	overflow: hidden;
+  	@media screen and (max-width: $break-big) {
+  		overflow: initial;
+  		&::after {
+  			content: "";
+  			display: block;
+  			position: fixed;
+  			width: 100%;
+  			height: 100%;
+  			background: rgba(0,0,0,.5);
+  			inset: 0;
+  			z-index: 1;
+  			opacity: 0;
+  			visibility: hidden;
+  			transition: .3s opacity ease;
+  		}
+  		&.overlay-active::after {
+  			opacity: 1;
+  			visibility: visible;
+  		}
+  	}
+  	h1 {
+  		font-size: 2.7rem;
+  	}
+  	p {
+  		color: $gray;
+  		font-size: 14px;
+  		line-height: 1.5;
+  	}
+  	a {
+  		text-decoration: none;
+  		color: inherit;
+  	}
+  	ul {
+  		list-style: none;
+  		padding: 0;
+  	}
+}
+
+
+
+.header {
+	position: absolute;
+	top: 3em;
+	left: 3em;
+	z-index: 100;
+	display: flex;
+	gap: 3em;
+	.nav .mobile-menu-toggle-button {
+		display: none;
+		position: absolute;
+		top: 3em;
+		left: 2em;
+		border: none;
+		background: none;
+		padding: 0;
+		margin: 0;
+		cursor: pointer;
+		@media screen and (max-width: $break-big) {
+			display: block;
+			&.close-button {
+				opacity: 0;
+				visibility: hidden;
+				z-index: 1;
+			}
+		}
+	}
+	.nav ul {
+		display: flex;
+		margin: 0;
+		gap: 1em;
+		a {
+			color: #fff;
+			position: relative;
+			padding: 0 0 8px;
+			&::after {
+				content: "";
+				position: absolute;
+				height: 2px;
+				width: 0;
+				bottom: 0px;
+				left: 50%;
+				transform: translate(-50%);
+				background: #fff;
+				transition: .3s width ease;
+			}
+			&:hover::after, &:focus::after {
+				width: 70%;
+			}
+		}
+	}
+	@media screen and (max-width: $break-big) {
+		position: relative;
+		left: 0;
+		top: 0;
+		.logo {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			top: 3em;
+		}
+		.nav {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+
+			ul {
+				opacity: 0;
+				visibility: hidden;
+				transition: .3s opacity ease-out;
+				height: 110px;
+				width: 100%;
+				background: #fff;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				padding-right: 5%;
+				a {
+					color: #000;
+					text-transform: lowercase;
+				}
+			}
+			&.nav-show {
+				.mobile-menu-toggle-button.close-button, ul {
+					opacity: 1;
+					visibility: visible;
+				}	
+			}
+		}
+	}
+}
+
+.owl-carousel {
+	.owl-nav {
+		position: absolute;
+		bottom: 0;
+		left: 55%;
+		.owl-prev, .owl-next {
+			background: #000 !important;
+			font-size: 40px !important;
+			width: 80px;
+			aspect-ratio: 1/1;
+			transition: .3s background ease;
+			span {
+				color: #fff;
+			}
+			&:hover, &:focus {
+				background: $grayLight !important;
+			}
+		}
+		@media screen and (max-width: $break-big) {
+			bottom: auto;
+			left: auto;
+			top: 300px;
+			right: 0;
+		}
+	}
+	.owl-dots {
+		display: none;
+	}
+
+	.owl-item {
+		.slide {
+			display: flex;
+			min-height: 65vh;
+			
+			.slide-image {
+				width: 55%;
+				background-image: url(../../img/desktop-image-hero-1.jpg);
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				&--2 {
+					background-image: url(../../img/desktop-image-hero-2.jpg);
+				}
+				&--3 {
+					background-image: url(../../img/desktop-image-hero-3.jpg);
+				}
+
+			}
+			.slide-text {
+				padding: 5% 7%;
+				width: 45%;
+				h1 {
+					margin-top: 0;
+					margin-bottom: 10px;
+				}
+				.btn {
+					margin-top: 15px;
+				}
+			}
+			@media screen and (max-width: $break-big) {
+				display: block;
+				min-height: auto;
+				.slide-image, .slide-text {
+					width: 100%;
+				}
+				.slide-image {
+					height: 380px;
+				}
+				.slide-text {
+					padding: 70px 30px;
+				}
+			}
+		}	
+	}	
+}
+
+.bottom-sec {
+	display: flex;
+	.bottom-photo {
+		width: 30%;
+		img {
+			width: 100%; height: 35vh;
+			object-fit: cover;
+		}
+	}
+	.bottom-text {
+		width: 40%;
+		padding: 20px 5%;
+		display: flex;
+		align-items: center;
+		h2 {
+			text-transform: uppercase;
+			font-weight: 700;
+			letter-spacing: 7px;
+			font-size: 1.25rem;
+		}
+	}
+	@media screen and (max-width: $break-big) {
+		display: block;
+		.bottom-photo, .bottom-text {
+			width: 100%;
+		}
+		.bottom-photo {
+			height: 240px;
+			img {
+				height: 100%;
+			}
+		}
+		.bottom-text {
+			padding: 70px 30px;
+		}
+	}
+}

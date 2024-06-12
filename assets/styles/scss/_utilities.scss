@@ -1,0 +1,23 @@
+.btn {
+	text-transform: uppercase;
+	font-weight: 700;
+	text-decoration: none;
+	letter-spacing: 8px;
+	word-spacing: 10px;
+	color: #000;
+	display: inline-block;
+	transition: .3s color ease;
+	svg {
+		font-weight: bold;
+		path {
+			fill: #000;
+			transition: .3s fill ease;
+		}
+	}
+	&:hover, &:focus {
+		color: $gray;
+		svg path {
+			fill: $gray;
+		}
+	}
+}
